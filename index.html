@@ -8,10 +8,10 @@
     <style>
         body {
             font-family: "Inter", sans-serif;
-            background-color: #F2F2F2; /* Very Light Gray */
+            background-color: #F2F2F2;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align to top to prevent content overflow */
+            align-items: flex-start;
             min-height: 100vh;
             padding: 20px;
             box-sizing: border-box;
@@ -34,33 +34,30 @@
         .icon-panel {
             flex-shrink: 0;
             width: 100%;
-            background-color: #C3ACE8; /* Medium Purple */
+            background-color: #C3ACE8;
             padding: 20px;
-            border-bottom: 2px solid #9D8ABB; /* Light Purple for subtle border */
+            border-bottom: 2px solid #9D8ABB;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Responsive grid for icons */
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
             gap: 15px;
-            justify-items: center; /* Center icons in their grid cells */
+            justify-items: center;
         }
         @media (min-width: 768px) {
             .icon-panel {
-                width: 350px; /* Increased width for icon panel on larger screens to fit 3 icons */
-                grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+                width: 350px;
+                grid-template-columns: repeat(3, 1fr);
                 border-bottom: none;
                 border-right: 2px solid #9D8ABB;
                 padding: 30px;
-                align-content: start; /* Align grid items to the start */
+                align-content: start;
             }
         }
-        /* The 1024px media query is no longer strictly necessary as 768px width is sufficient for 3 columns.
-           However, keeping it for potential future adjustments if more icons are added or spacing changes.*/
         @media (min-width: 1024px) {
             .icon-panel {
-                width: 350px; /* Maintain the same width for larger desktops */
+                width: 350px;
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
         .icon-button {
             display: flex;
             flex-direction: column;
@@ -71,20 +68,20 @@
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s, border-color 0.2s;
-            width: 90px; /* Fixed width for icon button */
-            height: 90px; /* Fixed height for icon button */
+            width: 90px;
+            height: 90px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid transparent; /* Default transparent border */
+            border: 2px solid transparent;
         }
         .icon-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(122, 191, 73, 0.4); /* Green shadow on hover */
-            background-color: #f9f9f9; /* Slightly lighter on hover */
+            box-shadow: 0 6px 12px rgba(122, 191, 73, 0.4);
+            background-color: #f9f9f9;
         }
         .icon-button.active {
-            background-color: #9D8ABB; /* Light Purple for active state */
-            border-color: #532A8C; /* Dark Purple border for active state */
-            box-shadow: 0 4px 10px rgba(83, 42, 140, 0.3); /* Dark Purple shadow for active state */
+            background-color: #9D8ABB;
+            border-color: #532A8C;
+            box-shadow: 0 4px 10px rgba(83, 42, 140, 0.3);
         }
         .icon-button img {
             width: 60px;
@@ -100,22 +97,22 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 300px; /* Ensure content area has a minimum height */
+            min-height: 300px;
         }
         .content-display h2 {
-            font-size: 1.875rem; /* text-3xl */
-            font-weight: 700; /* font-bold */
-            color: #532A8C; /* Dark Purple */
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #532A8C;
             margin-bottom: 15px;
         }
         .content-display p {
-            font-size: 1.125rem; /* text-lg */
-            color: #475569; /* slate-600 - keeping a neutral readable text color */
+            font-size: 1.125rem;
+            color: #475569;
             line-height: 1.6;
             max-width: 700px;
         }
         .initial-message {
-            color: #64748b; /* slate-500 */
+            color: #64748b;
             font-style: italic;
         }
     </style>
@@ -124,19 +121,19 @@
     <div class="container">
         <div class="icon-panel">
             <button class="icon-button" data-content="handHygiene">
-                <img src="Hand hygiene.png" alt="Hand Hygiene Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=HH'">
+                <img src="hand-hygiene.png" alt="Hand Hygiene Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=HH'">
             </button>
             <button class="icon-button" data-content="useOfPPE">
-                <img src="Use of PPE.png" alt="Use of PPE Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=PPE'">
+                <img src="use-of-ppe.png" alt="Use of PPE Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=PPE'">
             </button>
             <button class="icon-button" data-content="safeSharps">
-                <img src="Safe handling of sharps.png" alt="Safe Handling of Sharps Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Sharps'">
+                <img src="safe-handling-of-sharps.png" alt="Safe Handling of Sharps Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Sharps'">
             </button>
             <button class="icon-button" data-content="environmentalCleaning">
-                <img src="Environmental Cleaning.png" alt="Environmental Cleaning Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Clean'">
+                <img src="environmental-cleaning.png" alt="Environmental Cleaning Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Clean'">
             </button>
             <button class="icon-button" data-content="wasteManagement">
-                <img src="Waste Management.png" alt="Waste Management Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Waste'">
+                <img src="waste-management.png" alt="Waste Management Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Waste'">
             </button>
         </div>
 
@@ -175,10 +172,7 @@
 
         iconButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
                 iconButtons.forEach(btn => btn.classList.remove('active'));
-
-                // Add active class to the clicked button
                 button.classList.add('active');
 
                 const contentType = button.dataset.content;
