@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infection Control Activity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #F2F2F2; /* Very Light Gray */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to prevent content overflow */
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+        .icon-panel {
+            flex-shrink: 0;
+            width: 100%;
+            background-color: #C3ACE8; /* Medium Purple */
+            padding: 20px;
+            border-bottom: 2px solid #9D8ABB; /* Light Purple for subtle border */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Responsive grid for icons */
+            gap: 15px;
+            justify-items: center; /* Center icons in their grid cells */
+        }
+        @media (min-width: 768px) {
+            .icon-panel {
+                width: 350px; /* Increased width for icon panel on larger screens to fit 3 icons */
+                grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+                border-bottom: none;
+                border-right: 2px solid #9D8ABB;
+                padding: 30px;
+                align-content: start; /* Align grid items to the start */
+            }
+        }
+        /* The 1024px media query is no longer strictly necessary as 768px width is sufficient for 3 columns.
+           However, keeping it for potential future adjustments if more icons are added or spacing changes.*/
+        @media (min-width: 1024px) {
+            .icon-panel {
+                width: 350px; /* Maintain the same width for larger desktops */
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .icon-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s, border-color 0.2s;
+            width: 90px; /* Fixed width for icon button */
+            height: 90px; /* Fixed height for icon button */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent; /* Default transparent border */
+        }
+        .icon-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(122, 191, 73, 0.4); /* Green shadow on hover */
+            background-color: #f9f9f9; /* Slightly lighter on hover */
+        }
+        .icon-button.active {
+            background-color: #9D8ABB; /* Light Purple for active state */
+            border-color: #532A8C; /* Dark Purple border for active state */
+            box-shadow: 0 4px 10px rgba(83, 42, 140, 0.3); /* Dark Purple shadow for active state */
+        }
+        .icon-button img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        .content-display {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 300px; /* Ensure content area has a minimum height */
+        }
+        .content-display h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #532A8C; /* Dark Purple */
+            margin-bottom: 15px;
+        }
+        .content-display p {
+            font-size: 1.125rem; /* text-lg */
+            color: #475569; /* slate-600 - keeping a neutral readable text color */
+            line-height: 1.6;
+            max-width: 700px;
+        }
+        .initial-message {
+            color: #64748b; /* slate-500 */
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-panel">
+            <button class="icon-button" data-content="handHygiene">
+                <img src="Hand hygiene.png" alt="Hand Hygiene Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=HH'">
+            </button>
+            <button class="icon-button" data-content="useOfPPE">
+                <img src="Use of PPE.png" alt="Use of PPE Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=PPE'">
+            </button>
+            <button class="icon-button" data-content="safeSharps">
+                <img src="Safe handling of sharps.png" alt="Safe Handling of Sharps Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Sharps'">
+            </button>
+            <button class="icon-button" data-content="environmentalCleaning">
+                <img src="Environmental Cleaning.png" alt="Environmental Cleaning Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Clean'">
+            </button>
+            <button class="icon-button" data-content="wasteManagement">
+                <img src="Waste Management.png" alt="Waste Management Icon" onerror="this.onerror=null;this.src='https://placehold.co/60x60/a0aec0/ffffff?text=Waste'">
+            </button>
+        </div>
+
+        <div class="content-display" id="contentDisplay">
+            <h2 class="initial-message">Click an icon to learn more!</h2>
+            <p class="initial-message">Select any of the icons on the left to display important information about infection control practices.</p>
+        </div>
+    </div>
+
+    <script>
+        const contentData = {
+            handHygiene: {
+                title: "Hand Hygiene",
+                text: "Perform hand hygiene frequently and correctly (before and after handling instruments, after removing gloves, after contact with contaminated items)."
+            },
+            useOfPPE: {
+                title: "Use of PPE",
+                text: "Consistently and correctly use appropriate Personal Protective Equipment (PPE) for the task at hand (e.g., gloves, fluid-resistant gowns/aprons, protective eyewear, masks)."
+            },
+            safeSharps: {
+                title: "Safe Handling of Sharps",
+                text: "Always dispose of sharps in designated puncture-resistant containers immediately after use. Never recap, bend, or break needles."
+            },
+            environmentalCleaning: {
+                title: "Environmental Cleaning",
+                text: "Maintain a clean and tidy work environment, regularly cleaning and disinfecting surfaces according to established protocols."
+            },
+            wasteManagement: {
+                title: "Waste Management",
+                text: "Segregate and dispose of waste correctly, including contaminated and biohazardous waste."
+            }
+        };
+
+        const iconButtons = document.querySelectorAll('.icon-button');
+        const contentDisplay = document.getElementById('contentDisplay');
+
+        iconButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                iconButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                const contentType = button.dataset.content;
+                const data = contentData[contentType];
+
+                if (data) {
+                    contentDisplay.innerHTML = `
+                        <h2>${data.title}</h2>
+                        <p>${data.text}</p>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
